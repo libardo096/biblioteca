@@ -285,6 +285,7 @@ nav {
 
 .categoria:hover {
   transform: scale(1.05); 
+  background: #454ba3;
 }
 
 .categoria img {
@@ -293,3 +294,34 @@ nav {
 }
 
 
+/* ---------- SECCION DE LOS LIBROS ----------- */
+
+
+.contenedor-libros {
+    background: #161a2d;
+    margin: 20px 20px 20px 110px;
+    padding: 20px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+     gap: 20px;
+    
+}
+
+.libro {
+    background: #333578;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.libro:hover {
+    transform: scale(1.05);
+    background: #454ba3;
+}
+
+.libro img {
+    width: 100px;
+}
