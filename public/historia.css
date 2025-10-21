@@ -1,0 +1,326 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", sans-serif;
+    
+}
+
+body {
+    min-width:100vh;
+    background: #d2d2d2;
+}
+
+
+/* ---------- BARRA LATERAL ---------- */
+
+.barra-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: #161a2d;
+    padding: 25px 20px;
+    transition:all 0.4s ease;
+}
+
+.barra-lateral:hover {
+    width: 220px;
+}
+
+.barra-lateral-header{
+    display: flex;
+    align-items: center;
+
+}
+
+.barra-lateral-header img{
+    margin: -10px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.barra-lateral-header h2{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin-left: 20px;
+
+}
+
+.barra-latera-links {
+    list-style: none;
+    margin-top: 20px;
+    height: 65%;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.barra-latera-links h4 span {
+    opacity: 0;
+}
+
+.barra-lateral:hover .barra-latera-links h4 span {
+    opacity: 1;
+}
+
+.barra-latera-links h4 {
+    color: #ffff;
+    font-weight: 500;
+    margin: 10px 0;
+    white-space: nowrap;
+    position: relative;
+}
+
+.barra-latera-links .menu-separado {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    transition: scalex(1);
+    transform: translateY(-50%);
+    background: #333578;
+    transform-origin: right;
+    transition-duration: 0.0s;
+}
+
+.barra-lateral:hover .barra-latera-links .menu-separado {
+    transition-delay: 0s;
+    transform: scaleX(0);
+}
+
+.barra-latera-links li a{
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+    color: #dbd4dde3;
+    font-weight: 500;
+    padding: 15px 10px;
+    white-space: nowrap;
+    text-decoration: none;
+
+}
+
+.barra-latera-links li a:hover{
+    background: #ffffff2d;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.configuracion-de-usuario {
+    margin-top: auto;
+    padding: 12px 10px;
+    margin-left: -10px;
+
+}
+
+.configuracion-de-usuario .perfil-de-usuario {
+    display: flex;
+    align-items: center;
+    color: #e5dede;
+}
+
+.perfil-de-usuario img {
+    width: 42px;
+    border-radius: 50%;
+}
+
+.detalles-de-usuario {
+    margin: 23px;
+    white-space: nowrap;
+}
+
+.detalles-de-usuario {
+    margin-left: 23px;
+    white-space: nowrap;
+}
+
+.detalles-de-usuario h3 {
+    font-size: 1rem;
+    font-weight: 600;
+  
+}
+
+.detalles-de-usuario span  {
+    font-size: 0.775rem;
+    font-weight: 600;
+    display: block;
+    margin-top: 0;
+   
+}
+
+.simbolos-esquema img{
+    width: 20px;
+}
+
+.barra-lateral:hover .configuracion-de-usuario {
+    background: #ffffff2d;
+    border-radius: 4px;
+}
+
+.contenedor {
+    padding: 20px;
+    background: #161a2d;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+/* ---------- HEADER BARRA SUPERIOR ---------- */
+.header-superior {
+    position: fixed;
+    top: 0;
+    left: 85px;
+    right: 0;
+    height: 70px;
+    background: #161a2d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+    border-bottom: 2px solid #2e3350;
+    z-index: 10;
+}
+
+/* ----------BARRA DE BUSQUEDA---------- */
+.contendedor-header {
+    padding: 15px;
+    background: #161a2d;
+      display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* ---------- BOTONES DE LOGIN Y REGISTRO ---------- */
+
+nav {
+    margin-right: 7px;
+    display: flex;
+    gap: 10px;
+}
+
+.contendedor-header .buscador{
+    position: relative;
+    width: 40%;
+    height: 40px;
+}
+
+
+.buscador input {
+    display: flex;
+    align-items: center;
+    margin-left: 215px;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    padding: 20px 20px 20px 40px;
+    color: #fff;
+}
+
+.buscador input::placeholder{
+    color: #fff;
+}
+
+.buscador img {
+    width: 30px;
+    left: 225px;
+    top: 8px;
+    position: absolute;
+    right: 20px;
+}
+
+
+
+.login-registro a {
+    margin-bottom: -5px;
+    border-radius: 10px;
+    padding: 4px;
+    border-radius: 2px solid rgb(255, 255, 255 , .2);
+    background: #333578;
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* ---------- CATEGORIAS LIBROS ---------- */
+
+
+.categorias {
+    background: #161a2d;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 20px 110px;
+    padding: 25px;
+    border-radius: 24px;
+}
+
+.categoria {
+    background: #333578;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-align: justify;
+    color: #fff;
+    gap: 10px; 
+    /* transition: transform 0.3s; */
+    padding: 10px;
+    padding-right: 300px;
+    /* cursor: pointer; */
+    border-radius: 14px;
+}
+
+/* .categoria:hover {
+  transform: scale(1.05); 
+  background: #454ba3;
+} */
+
+.categoria img {
+    width: 40px;
+}
+
+
+/* ---------- SECCION DE LOS LIBROS ----------- */
+
+
+.contenedor-libros {
+    background: #161a2d;
+    margin: 20px 20px 20px 110px;
+    padding: 20px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+     gap: 20px;
+    
+}
+
+.libro {
+    background: #333578;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.libro:hover {
+    transform: scale(1.05);
+    background: #454ba3;
+}
+
+.libro img {
+    width: 100px;
+}
