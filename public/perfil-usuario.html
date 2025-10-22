@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Literatura</title>
+    <title>Biblioteca</title>
     
-    <link rel="stylesheet" href="css/literatura.css">
+    <link rel="stylesheet" href="css/perfil-usuario.css">
 </head>
 <body>
         <!-- esta es la barra lateral -->
@@ -53,7 +53,7 @@
             </div>
         </aside>
 
-         <!-- Header barran superriior -->
+        <!-- Header barran superriior -->
         <header class="contendedor-header">
                 <div class="buscador">
                     <input type="text" placeholder="buscar libro" >
@@ -67,64 +67,24 @@
                 
         </header>
 
-         <!-- ---CONTENIDO DE LAS CATEGORIAS Y LIBROS--- -->
-        
-        <main class="contenedor-categorias">
+       <!-- Sección Perfil de Usuario -->
+ <section class="perfil-usuario-editable">
+        <div class="contenedor-perfil">
+            <div class="foto-perfil">
+                <img id="imagenPerfil" src="Img/perfil-defecto.png" alt="Foto de perfil">
+                <input type="file" id="inputFoto" accept="image/*" hidden>
+                <button id="eliminarFoto">Eliminar foto</button>
+            </div>
 
-            <!-- ---SECCION DE LAS CATERGORIAS-- -->
-             <section class="categorias">
-                <div class="categoria">
-                    <img src="Img/Literatura.png" alt="literatura-novelas">
-                    <p>Literatura y novelas</p>
-                </div>
-             </section>
+            <div class="info-perfil">
+                <label for="nombreUsuario">Nombre de usuario:</label>
+                <input type="text" id="nombreUsuario" value="Eliza Evans">
+                <button id="guardarPerfil">Guardar</button>
+            </div>
+        </div>
+    </section>
 
-               <!-- ---------- CONTENEDOR DE LIBROS---------- -->
-             <section class="contenedor-libros">
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-             </section>
-
+    <script src="js/perfil-usuario.js"></script>
         </main>
 
     </body>
