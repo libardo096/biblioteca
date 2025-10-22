@@ -18,26 +18,24 @@
                     <div class="menu-separado"></div>
                 </h4>
                 <li>
-                    <a href="#"><span class="simbolos-esquema"><img src="Img/home.png" alt=""></span>casa</a>
+                    <a href="biblioteca.html"><span class="simbolos-esquema"><img src="Img/home.png" alt=""></span>casa</a>
                 </li>
                 <li>
-                    <a href="#"><span class="simbolos-esquema"><img src="Img/favoritos.png" alt=""></span>favoritos</a>
+                    <a href="favoritos.html"><span class="simbolos-esquema"><img src="Img/favoritos.png" alt=""></span>favoritos</a>
                 </li>
                 <li>
-                    <a href="#"><span class="simbolos-esquema"><img src="Img/historial.png" alt=""></span>historial</a>
+                    <a href="historial-leidos.html"><span class="simbolos-esquema"><img src="Img/historial.png" alt=""></span>historial</a>
                 </li>
                 <h4>
                     <span>Cuentas</span>
                     <div class="menu-separado"></div>
                 </h4>
                 <li>
-                    <a href="#"><span class="simbolos-esquema"><img src="Img/perfil_usuario.png" alt=""></span>Perfil</a>
+                    <a href="perfil-usuario.html"><span class="simbolos-esquema"><img src="Img/perfil_usuario.png" alt=""></span>Perfil</a>
                 </li>
+                
                 <li>
-                    <a href="#"><span class="simbolos-esquema"><img src="Img/setting.png" alt=""></span>Configuracion</a>
-                </li>
-                <li>
-                    <a href="#"><span class="simbolos-esquema"><img src="Img/salir.png" alt=""></span>salir</a>
+                    <a href="login.html"><span class="simbolos-esquema"><img src="Img/salir.png" alt=""></span>salir</a>
                 </li>
             </ul>
             <div class="configuracion-de-usuario">
@@ -126,6 +124,24 @@
              </section>
 
         </main>
+
+        <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
+  const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));
+
+  const imgPerfil = document.querySelector(".perfil-de-usuario img");
+  const nombrePerfil = document.querySelector(".detalles-de-usuario h3");
+
+  if (datosGuardados) {
+    imgPerfil.src = datosGuardados.imagen || IMAGEN_POR_DEFECTO;
+    nombrePerfil.textContent = datosGuardados.nombre || "Usuario";
+  } else {
+    imgPerfil.src = IMAGEN_POR_DEFECTO;
+    nombrePerfil.textContent = "Usuario";
+  }
+});
+</script>
 
     </body>
 </html>
