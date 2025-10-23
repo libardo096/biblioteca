@@ -1,68 +1,55 @@
-// --- Lógica para cambiar nombre y foto ---
-const inputFoto = document.getElementById('inputFoto');
-const imagenPerfil = document.getElementById('imagenPerfil');
-const nombreUsuario = document.getElementById('nombreUsuario');
-const guardarPerfil = document.getElementById('guardarPerfil');
-const eliminarFoto = document.getElementById('eliminarFoto');
+document.addEventListener("DOMContentLoaded", () => {
+  const inputFoto = document.getElementById("inputFoto");
+  const imagenPerfil = document.getElementById("imagenPerfil");
+  const eliminarFoto = document.getElementById("eliminarFoto");
+  const nombreUsuario = document.getElementById("nombreUsuario");
+  const guardarPerfil = document.getElementById("guardarPerfil");
 
-// Elementos en la barra lateral
-const nombreBarra = document.getElementById('nombreBarra');
-const fotoBarra = document.getElementById('fotoBarra');
+  const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
 
-// Imagen por defecto
-const imagenPorDefecto = 'Img/perfil-defecto.png';
-
-// Cargar datos guardados
-window.addEventListener('DOMContentLoaded', () => {
-  const nombreGuardado = localStorage.getItem('nombreUsuario');
-  const fotoGuardada = localStorage.getItem('fotoPerfil');
-
-  if (nombreGuardado) {
-    nombreUsuario.value = nombreGuardado;
-    nombreBarra.textContent = nombreGuardado;
-  }
-
-  if (fotoGuardada) {
-    imagenPerfil.src = fotoGuardada;
-    fotoBarra.src = fotoGuardada;
+  // Cargar datos guardados (si existen)
+  const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));
+  if (datosGuardados) {
+    imagenPerfil.src = datosGuardados.imagen || IMAGEN_POR_DEFECTO;
+    nombreUsuario.value = datosGuardados.nombre || "";
   } else {
-    imagenPerfil.src = imagenPorDefecto;
-    fotoBarra.src = imagenPorDefecto;
+    imagenPerfil.src = IMAGEN_POR_DEFECTO;
   }
+
+  // Cambiar foto
+  imagenPerfil.addEventListener("click", () => inputFoto.click());
+  inputFoto.addEventListener("change", () => {
+    const file = inputFoto.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => (imagenPerfil.src = reader.result);
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Eliminar foto → volver a la imagen por defecto
+  eliminarFoto.addEventListener("click", () => {
+    imagenPerfil.src = IMAGEN_POR_DEFECTO;
+    inputFoto.value = "";
+  });
+
+  // Guardar cambios
+guardarPerfil.addEventListener("click", () => {
+  const perfil = {
+    nombre: nombreUsuario.value,
+    imagen: imagenPerfil.src === "" ? IMAGEN_POR_DEFECTO : imagenPerfil.src
+  };
+
+  // Guardar en localStorage
+  localStorage.setItem("perfilUsuario", JSON.stringify(perfil));
+
+  // ✅ Actualizar la barra lateral inmediatamente (si existe en la misma página)
+  const imgBarra = document.querySelector(".perfil-de-usuario img");
+  const nombreBarra = document.querySelector(".detalles-de-usuario h3");
+
+  if (imgBarra) imgBarra.src = perfil.imagen || IMAGEN_POR_DEFECTO;
+  if (nombreBarra) nombreBarra.textContent = perfil.nombre || "Usuario";
+
+  alert("Perfil actualizado correctamente ✅");
 });
-
-// --- Al hacer clic en la imagen se abre el selector ---
-imagenPerfil.addEventListener('click', () => {
-  inputFoto.click();
-});
-
-// Cambiar foto
-inputFoto.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      imagenPerfil.src = event.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-// Guardar datos
-guardarPerfil.addEventListener('click', () => {
-  localStorage.setItem('nombreUsuario', nombreUsuario.value);
-  localStorage.setItem('fotoPerfil', imagenPerfil.src);
-
-  nombreBarra.textContent = nombreUsuario.value;
-  fotoBarra.src = imagenPerfil.src || imagenPorDefecto;
-
-  alert('Perfil actualizado correctamente');
-});
-
-// Eliminar foto y volver a la predeterminada
-eliminarFoto.addEventListener('click', () => {
-  imagenPerfil.src = imagenPorDefecto;
-  fotoBarra.src = imagenPorDefecto;
-  localStorage.removeItem('fotoPerfil');
-  alert('Foto eliminada. Se ha restaurado la imagen por defecto.');
 });
