@@ -281,6 +281,7 @@ nav {
     padding: 10px;
     cursor: pointer;
     border-radius: 14px;
+    text-decoration: none;
 }
 
 .categoria:hover {
@@ -324,4 +325,27 @@ nav {
 
 .libro img {
     width: 100px;
+}
+
+
+.libro h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 8px;
+  color: #fff;
+}
+
+.libro p {
+  font-size: 0.8rem;
+  color: #d2d2d2;
+  margin: 4px 0;
+}
+
+.libro .categoria {
+  display: inline-block;
+  background: #222659;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #fff;
 }
