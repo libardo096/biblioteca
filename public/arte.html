@@ -88,19 +88,19 @@
 
         <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
-  const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));
+const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
+const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));
 
-  const imgPerfil = document.querySelector(".perfil-de-usuario img");
-  const nombrePerfil = document.querySelector(".detalles-de-usuario h3");
+const imgPerfil = document.querySelector(".perfil-de-usuario img");
+const nombrePerfil = document.querySelector(".detalles-de-usuario h3");
 
-  if (datosGuardados) {
+if (datosGuardados) {
     imgPerfil.src = datosGuardados.imagen || IMAGEN_POR_DEFECTO;
     nombrePerfil.textContent = datosGuardados.nombre || "Usuario";
-  } else {
+} else {
     imgPerfil.src = IMAGEN_POR_DEFECTO;
     nombrePerfil.textContent = "Usuario";
-  }
+}
 });
 </script>
 

@@ -50,7 +50,7 @@
             </div>
         </aside>
 
-         <!-- Header barran superriior -->
+        <!-- Header barran superriior -->
         <header class="contendedor-header">
                 <div class="buscador">
                     <input type="text" placeholder="buscar libro" >
@@ -64,39 +64,20 @@
                 
         </header>
 
-         <!-- ---CONTENIDO DE LAS CATEGORIAS Y LIBROS--- -->
+        <!-- ---CONTENIDO DE LAS CATEGORIAS Y LIBROS--- -->
         
         <main class="contenedor-categorias">
 
             <!-- ---SECCION DE LAS CATERGORIAS-- -->
-             <section class="categorias">
+            <section class="categorias">
                 <div class="categoria">
                     <img src="Img/historial.png" alt="literatura-novelas">
                     <p>libros leidos</p>
                 </div>
-             </section>
+            </section>
 
-               <!-- ---------- CONTENEDOR DE LIBROS---------- -->
-             <section class="contenedor-libros">
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
-
-                <div class="libro">
-                    <img src="Img/portada-prueva.jpg" alt="">
-                </div>
+            <!-- ---------- CONTENEDOR DE LIBROS---------- -->
+            <section class="contenedor-libros">
                 <div class="libro">
                     <img src="Img/portada-prueva.jpg" alt="">
                 </div>
@@ -116,29 +97,48 @@
                 <div class="libro">
                     <img src="Img/portada-prueva.jpg" alt="">
                 </div>
+                <div class="libro">
+                    <img src="Img/portada-prueva.jpg" alt="">
+                </div>
 
                 <div class="libro">
                     <img src="Img/portada-prueva.jpg" alt="">
                 </div>
-             </section>
+
+                <div class="libro">
+                    <img src="Img/portada-prueva.jpg" alt="">
+                </div>
+
+                <div class="libro">
+                    <img src="Img/portada-prueva.jpg" alt="">
+                </div>
+
+                <div class="libro">
+                    <img src="Img/portada-prueva.jpg" alt="">
+                </div>
+
+                <div class="libro">
+                    <img src="Img/portada-prueva.jpg" alt="">
+                </div>
+            </section>
 
         </main>
 
         <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
-  const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));
+const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
+const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));
 
-  const imgPerfil = document.querySelector(".perfil-de-usuario img");
-  const nombrePerfil = document.querySelector(".detalles-de-usuario h3");
+const imgPerfil = document.querySelector(".perfil-de-usuario img");
+const nombrePerfil = document.querySelector(".detalles-de-usuario h3");
 
-  if (datosGuardados) {
+if (datosGuardados) {
     imgPerfil.src = datosGuardados.imagen || IMAGEN_POR_DEFECTO;
     nombrePerfil.textContent = datosGuardados.nombre || "Usuario";
-  } else {
+} else {
     imgPerfil.src = IMAGEN_POR_DEFECTO;
     nombrePerfil.textContent = "Usuario";
-  }
+}
 });
 </script>
 
