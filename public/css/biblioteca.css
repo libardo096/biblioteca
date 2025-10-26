@@ -349,3 +349,18 @@ nav {
   font-size: 0.7rem;
   color: #fff;
 }
+
+/* ---------- BOTON DE FAVORITO ---------- */
+.btn-favorito {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-top: 5px;
+  transition: transform 0.2s;
+}
+
+.btn-favorito:hover {
+  transform: scale(1.2);
+}
+
