@@ -3,6 +3,14 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const contenedorLibros = document.getElementById("contenedor-libros");
 
+    // 🧩 Si estamos en favoritos.html, solo ejecutar la lógica de favoritos
+  const archivo = window.location.pathname.split("/").pop();
+  if (archivo === "favoritos.html") {
+    manejarFavoritos(); // ← función que veremos abajo
+    return; // Detiene el resto del código
+  }
+
+
   try {
     const respuesta = await fetch("http://localhost:3000/api/libros");
     const libros = await respuesta.json();
@@ -92,3 +100,74 @@ function mostrarLibros(libros, contenedor) {
     });
   });
 }
+
+
+
+
+// ===================================================== //
+//    FAVORITOS.HTML — Mostrar y buscar libros guardados //
+// ===================================================== //
+function manejarFavoritos() {
+  const contenedor = document.getElementById("contenedor-libros");
+  const buscador = document.getElementById("buscador-libros");
+  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+  function renderFavoritos(libros) {
+    contenedor.innerHTML = "";
+
+    if (!libros.length) {
+      contenedor.innerHTML = `<p style="color:white;text-align:center;">No se encontraron libros.</p>`;
+      return;
+    }
+
+    libros.forEach(libro => {
+      const div = document.createElement("div");
+      div.classList.add("libro");
+      div.innerHTML = `
+        <img src="${libro.imagen}" alt="${libro.titulo}">
+        <h4>${libro.titulo}</h4>
+        <p>${libro.autor}</p>
+        <span class="categoria">${libro.categoria}</span>
+        <button class="btn-quitar" data-id="${libro.id}">Quitar libro</button>
+      `;
+      contenedor.appendChild(div);
+    });
+
+    document.querySelectorAll(".btn-quitar").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const id = parseInt(e.target.dataset.id);
+        favoritos = favoritos.filter(f => f.id !== id);
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+        renderFavoritos(favoritos);
+      });
+    });
+  }
+
+  // Mostrar todos los favoritos al entrar
+  renderFavoritos(favoritos);
+
+  // Búsqueda dentro de los favoritos
+  if (buscador) {
+    buscador.addEventListener("input", e => {
+      const texto = e.target.value.toLowerCase();
+      const filtrados = favoritos.filter(l =>
+        l.titulo.toLowerCase().includes(texto) ||
+        l.autor.toLowerCase().includes(texto) ||
+        l.categoria.toLowerCase().includes(texto)
+      );
+      renderFavoritos(filtrados);
+    });
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegistro = document.getElementById("btn-registro");
+
+  if (usuario) {
+    if (btnLogin) btnLogin.style.display = "none";
+    if (btnRegistro) btnRegistro.style.display = "none";
+  }
+});

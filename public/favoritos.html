@@ -50,7 +50,7 @@
          <!-- Header barran superriior -->
         <header class="contendedor-header">
                 <div class="buscador">
-                    <input type="text" id="buscador-libros" placeholder="buscar libro" >
+                    <input type="text" id="buscador-libros" placeholder="buscar favoritos" >
                     <img src="Img/lupa.png" width="50px">
                 </div>
                 
@@ -74,8 +74,7 @@
              </section>
 
                <!-- ---------- CONTENEDOR DE LIBROS---------- -->
-             <section class="contenedor-libros" id="contenedor-libros">
-             </section>
+             <section class="contenedor-libros" id="contenedor-libros"></section>
 
         </main>
 
@@ -98,63 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // ---- Código que ya tenías (manténlo intacto) ----
-  const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
-  const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));
 
-  const imgPerfil = document.querySelector(".perfil-de-usuario img");
-  const nombrePerfil = document.querySelector(".detalles-de-usuario h3");
-
-  if (datosGuardados) {
-    imgPerfil.src = datosGuardados.imagen || IMAGEN_POR_DEFECTO;
-    nombrePerfil.textContent = datosGuardados.nombre || "Usuario";
-  } else {
-    imgPerfil.src = IMAGEN_POR_DEFECTO;
-    nombrePerfil.textContent = "Usuario";
-  }
-
-  // ---- NUEVO CÓDIGO PARA MOSTRAR FAVORITOS ----
-  const contenedor = document.querySelector(".contenedor-libros");
-  const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-
-  if (favoritos.length === 0) {
-    contenedor.innerHTML = "<p style='color:white;text-align:center;'>No tienes libros en favoritos ❤️</p>";
-    return;
-  }
-
-  favoritos.forEach(libro => {
-    const div = document.createElement("div");
-    div.classList.add("libro");
-    div.innerHTML = `
-      <img src="${libro.imagen.startsWith('http') ? libro.imagen : libro.imagen}" alt="${libro.titulo}">
-      <h4>${libro.titulo}</h4>
-      <p>${libro.autor}</p>
-      <span class="categoria">${libro.categoria}</span>
-      <button class="btn-favorito-eliminar" data-id="${libro.id}">🗑️ Quitar</button>
-    `;
-    contenedor.appendChild(div);
-  });
-
-  // Permitir eliminar favoritos
-  document.querySelectorAll(".btn-favorito-eliminar").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const id = parseInt(e.target.dataset.id);
-      let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-      favoritos = favoritos.filter(l => l.id !== id);
-      localStorage.setItem("favoritos", JSON.stringify(favoritos));
-      e.target.parentElement.remove();
-
-      if (favoritos.length === 0) {
-        contenedor.innerHTML = "<p style='color:white;text-align:center;'>No tienes libros en favoritos ❤️</p>";
-      }
-    });
-  });
-});
-</script>
-
-
+<script src="js/biblioteca.js"></script>
 
 
     </body>
