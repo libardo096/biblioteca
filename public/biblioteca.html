@@ -53,15 +53,17 @@
 
         <!-- Header barran superriior -->
         <header class="contendedor-header">
-                <div class="buscador">
-                    <input type="text" id="buscador-libros" placeholder="buscar libro" >
-                    <img src="Img/lupa.png" width="50px">
-                </div>
+            <div class="buscador">
+                <input type="text" id="buscador-libros" placeholder="buscar libro" >
+                <img src="Img/lupa.png" width="50px">
+            </div>
                 
-                    <nav class="login-registro">
-                        <a href="login.html">login</a>
-                        <a href="registro.html">registrarse</a>
-                    </nav>
+            <nav>
+                <a href="login.html" id="btn-login">Login</a>
+                <a href="registro.html" id="btn-registro">Registro</a>
+                <span id="usuario-bienvenido" style="color:white; margin-left:10px;"></span>
+                <button id="btn-cerrar-sesion" style="display:none;">Cerrar sesión</button>
+             </nav>
                 
         </header>
 
@@ -107,6 +109,8 @@
         </main>
 
        <script>
+
+        
 document.addEventListener("DOMContentLoaded", () => {
   const IMAGEN_POR_DEFECTO = "Img/perfil-defecto.png";
   const datosGuardados = JSON.parse(localStorage.getItem("perfilUsuario"));

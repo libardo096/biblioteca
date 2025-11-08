@@ -6,31 +6,35 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-// Middleware
+// 🧩 Middlewares necesarios
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, "../public")));
 
+
+
 // Conexión a la base de datos MySQL
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",       // ⚠️ Cambia esto según tu usuario MySQL
-  password: "",        // ⚠️ Coloca tu contraseña aquí si tienes
+  user: "root",       
+  password: "",        
   database: "biblioteca"
 });
 
+//
 db.connect((err) => {
   if (err) {
-    console.error("Error al conectar a la base de datos:", err);
+    console.error("Error al conectar a la base de datos:", err);//si hay un error en la conexión
   } else {
-    console.log("✅ Conexión exitosa a la base de datos MySQL");
+    console.log("✅ Conexión exitosa a la base de datos MySQL"); //si la conexión es exitosa
   }
 });
 
 
-// 📚 Ruta: obtener libros por categoría
+// ----------RUTA: OBTENER LIBROS POR CATEGORÍA----------
 app.get("/api/libros/categoria/:categoria", (req, res) => {
   const { categoria } = req.params;
   const sql = "SELECT * FROM libros WHERE categoria = ?";
@@ -44,7 +48,7 @@ app.get("/api/libros/categoria/:categoria", (req, res) => {
   });
 });
 
-// 🔍 Ruta: buscar libros por nombre o autor
+// Ruta: buscar libros por nombre o autor
 app.get("/api/buscar", (req, res) => {
   const q = req.query.q;
   if (!q) return res.json([]);
@@ -60,7 +64,7 @@ app.get("/api/buscar", (req, res) => {
   });
 });
 
-// 📚 Ruta: obtener todos los libros
+//  Ruta: obtener todos los libros
 app.get("/api/libros", (req, res) => {
   const sql = "SELECT * FROM libros";
   db.query(sql, (err, result) => {
@@ -73,8 +77,7 @@ app.get("/api/libros", (req, res) => {
   });
 });
 
-
-// Ruta: iniciar sesión
+// Ruta: login de usuario
 app.post("/login", (req, res) => {
   const { usuario, contraseña } = req.body;
 
@@ -97,6 +100,29 @@ app.post("/login", (req, res) => {
     }
   });
 });
+
+// Ruta: registro de usuario
+app.post("/registro", (req, res) => {
+  const { usuario, contraseña } = req.body;
+
+  if (!usuario || !contraseña) {
+    return res.status(400).json({ error: "Faltan datos" });
+  }
+
+  const sql = "INSERT INTO usuarios (usuario, contraseña) VALUES (?, ?)";
+  db.query(sql, [usuario, contraseña], (err, result) => {
+    if (err) {
+      console.error("Error al registrar usuario:", err);
+      if (err.code === "ER_DUP_ENTRY") {
+        return res.status(400).json({ error: "El usuario ya existe" });
+      }
+      return res.status(500).json({ error: "Error al registrar el usuario" });
+    }
+    res.json({ success: true, message: "Usuario registrado correctamente" });
+  });
+});
+
+
 
 
 // Servir el frontend (biblioteca.html por defecto)

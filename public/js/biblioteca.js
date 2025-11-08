@@ -1,9 +1,36 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegistro = document.getElementById("btn-registro");
+  const usuarioBienvenido = document.getElementById("usuario-bienvenido");
+  const btnCerrarSesion = document.getElementById("btn-cerrar-sesion");
+
+  if (usuario) {
+    // 🔹 Mostrar nombre de usuario
+    if (usuarioBienvenido) usuarioBienvenido.textContent = `👋 Bienvenido, ${usuario.nombre}`;
+    // 🔹 Ocultar botones de login y registro
+    if (btnLogin) btnLogin.style.display = "none";
+    if (btnRegistro) btnRegistro.style.display = "none";
+    // 🔹 Mostrar botón de cerrar sesión
+    if (btnCerrarSesion) btnCerrarSesion.style.display = "inline-block";
+  }
+
+  // 🧹 Cerrar sesión
+  if (btnCerrarSesion) {
+    btnCerrarSesion.addEventListener("click", () => {
+      localStorage.removeItem("usuario");
+      window.location.href = "login.html";
+    });
+  }
+});
+
+
 // js/biblioteca.js
 
 document.addEventListener("DOMContentLoaded", async () => {
   const contenedorLibros = document.getElementById("contenedor-libros");
 
-    // 🧩 Si estamos en favoritos.html, solo ejecutar la lógica de favoritos
+    // Si estamos en favoritos.html, solo ejecutar la lógica de favoritos
   const archivo = window.location.pathname.split("/").pop();
   if (archivo === "favoritos.html") {
     manejarFavoritos(); // ← función que veremos abajo
@@ -20,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     contenedorLibros.innerHTML = "<p>Error al cargar los libros.</p>";
   }
 
-  // 🔍 Búsqueda dinámica
+  //  Búsqueda dinámica
   const buscador = document.getElementById("buscador-libros");
   if (!buscador || !contenedorLibros) return;
 
@@ -49,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-// 🔄 Función para mostrar libros y manejar favoritos
+//  Función para mostrar libros y manejar favoritos
 function mostrarLibros(libros, contenedor) {
   contenedor.innerHTML = "";
 
@@ -79,7 +106,7 @@ function mostrarLibros(libros, contenedor) {
     contenedor.appendChild(div);
   });
 
-  // ❤️ Manejar favoritos
+  // Manejar favoritos
   document.querySelectorAll(".btn-favorito").forEach(boton => {
     boton.addEventListener("click", (e) => {
       const id = parseInt(e.target.dataset.id);

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
-  if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -14,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("/login", {
+      const res = await fetch("/registro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usuario, contraseña }),
@@ -23,17 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        // ✅ Guardar usuario en localStorage
-        localStorage.setItem("usuario", JSON.stringify({ nombre: data.usuario }));
-
-        // ✅ Redirigir a la biblioteca principal
-        window.location.href = "biblioteca.html";
+        alert("✅ Registro exitoso. Ahora puedes iniciar sesión.");
+        window.location.href = "login.html"; // Redirige al login
       } else {
-        alert(data.error || "Usuario o contraseña incorrectos");
+        alert(data.error || "No se pudo registrar el usuario");
       }
     } catch (err) {
-      console.error("Error al conectar con el servidor:", err);
-      alert("No se pudo conectar con el servidor");
+      console.error("Error al registrar usuario:", err);
+      alert("Error de conexión con el servidor");
     }
   });
 });
